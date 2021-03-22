@@ -1,0 +1,18 @@
+[
+  {
+    "id": "2733ec2e-ead5-4162-9c9a-e929a03115d9",
+    "username": "postman",
+    "password": "p0stman!",
+    "firstname": "Postman",
+    "lastname": "User",
+    "active": true
+  },
+  {
+    "id": "53bc3320-2258-11e9-8dff-6513ef8e5493",
+    "username": "demouser",
+    "password": "demopassword",
+    "firstname": "Demo",
+    "lastname": "User",
+    "active": true
+  }
+]

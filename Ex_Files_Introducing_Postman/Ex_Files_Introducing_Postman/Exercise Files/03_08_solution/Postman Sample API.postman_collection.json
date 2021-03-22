@@ -1,0 +1,365 @@
+{
+	"info": {
+		"_postman_id": "2db39a3b-c8f5-417a-9399-66ec6885703d",
+		"name": "Postman Sample API",
+		"description": "The requests in this collection exercise the sample API provided with the Introduction to Postman course. It defines Bearer Token authentication for requests which inherit their authentication type.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Boards",
+			"item": [
+				{
+					"name": "Get Board List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/boards",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"boards"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Board Details",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search - By Name",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"filters\": [\n\t\t{ \"field\": \"name\", \"value\": \"Chapter\" }\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/boards/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"boards",
+								"search"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Search - By Description",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"filters\": [\n\t\t{ \"field\": \"description\", \"value\": \"management\" }\n\t]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/boards/search",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"boards",
+								"search"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "The Boards folder contains requests for managing Boards in the Sample API. All requests inherit authentication from the Collection.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "d4afced5-3d63-448e-8551-3752ce93c1eb",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ce26df89-471d-4aef-8c90-c841afad11b1",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "API Status",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:3000/api",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Authorization",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"description": "Informs the server that the request body contains JSON.",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"username\": \"{{USERNAME}}\",\n\t\"password\": \"{{PASSWORD}}\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:3000/api/auth",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"api",
+						"auth"
+					]
+				},
+				"description": "Given valid credentials returns a JWT to be attached to future requests as a bearer token."
+			},
+			"response": [
+				{
+					"name": "Valid User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": "Informs the server that the request body contains JSON.",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"demouser\",\n\t\"password\": \"demopassword\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "277"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"115-7qce6wZ5XepidRt26h6An68qpyU\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 07 Mar 2019 17:19:52 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjUzYmMzMzIwLTIyNTgtMTFlOS04ZGZmLTY1MTNlZjhlNTQ5MyIsInVzZXJuYW1lIjoiZGVtb3VzZXIiLCJmaXJzdG5hbWUiOiJEZW1vIiwibGFzdG5hbWUiOiJVc2VyIiwiaWF0IjoxNTUxOTc5MTkyLCJleHAiOjE1NTE5ODI3OTJ9.XTT36SiXIwynmm68OrNmKvnwikkVU-Y5bGNEZMD0E4M\"\n}"
+				},
+				{
+					"name": "Invalid User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"description": "Informs the server that the request body contains JSON.",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"demouser\",\n\t\"password\": \"demopass\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth"
+							]
+						}
+					},
+					"status": "Not Found",
+					"code": 404,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "application/json; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "72"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"48-2/v57sfEYbBNI83f6pcUsK9PdZE\""
+						},
+						{
+							"key": "Date",
+							"value": "Thu, 07 Mar 2019 17:21:15 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Authentication failed: Unable to locate the requested user\"\n}"
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{BEARER_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "4b6d8e1e-b622-469f-8f87-2c210e25d1b2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "483a5d7d-8680-46c6-a30c-63eb46b1db31",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

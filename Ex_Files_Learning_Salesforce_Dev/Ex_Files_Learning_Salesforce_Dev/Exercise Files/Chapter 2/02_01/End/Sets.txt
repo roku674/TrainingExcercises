@@ -1,0 +1,8 @@
+set<Id> myIds = new set<Id>();
+system.debug('************ myIds: '+ myIds);
+//
+// get id value from you org for a contact
+//
+myIds.add('0031I000003q7e3');
+system.debug('************ myIds: '+ myIds);
+

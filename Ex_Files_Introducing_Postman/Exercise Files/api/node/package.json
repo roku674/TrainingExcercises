@@ -1,0 +1,21 @@
+{
+  "name": "linkedin-learning-introducing-postman",
+  "version": "1.0.0",
+  "description": "Sample API for Introducing Postman on LinkedIn Learning",
+  "main": "server.js",
+  "scripts": {
+    "start-mac": "cd ../../ && node ./api/node/server.js",
+    "start-win": "cd ../../ && node .\\api\\node\\server.js"
+  },
+  "author": "Dave Fancher",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "dotenv": "^6.2.0",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "lodash": "^4.17.11",
+    "morgan": "^1.9.1",
+    "uuid": "^3.3.2"
+  }
+}

@@ -1,0 +1,2 @@
+<apex:page standardcontroller="Account" extensions="AccountButtonController" action="{!startBatch}" sidebar="false" docType="html-5.0">
+</apex:page>

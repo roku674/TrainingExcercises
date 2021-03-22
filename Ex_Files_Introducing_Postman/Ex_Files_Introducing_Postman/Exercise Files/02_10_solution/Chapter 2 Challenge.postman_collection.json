@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "89782b77-970c-486c-9f09-19d7ffd8d3fa",
+		"name": "Chapter 2 Challenge",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "List Tickets for Board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/boards/4af02b20-0e35-11e9-86bb-a1378ad71a65/tickets",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"boards",
+								"4af02b20-0e35-11e9-86bb-a1378ad71a65",
+								"tickets"
+							]
+						},
+						"description": "Gets a list of the tickets for a Board"
+					},
+					"response": []
+				}
+			],
+			"description": "The Tickets folder contains requests for managing Tickets in the sample API."
+		}
+	]
+}

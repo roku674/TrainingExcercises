@@ -1,0 +1,1090 @@
+{
+	"info": {
+		"_postman_id": "27ee114a-c230-4736-9979-4f910be55b4b",
+		"name": "Introducing Postman (Master)",
+		"description": "This project contains requests for working with the sample API for LinkedIn Learning's Introducing Postman course.\n\nThe Sample API is a self-contained `node.js` application provided to allow a consistent learning experience. To get the most benefit from the course clone the sample API code and run it locally.\n\n*Note that although the sample API has some basic user authentication capabilities it is intended only for use as a sample. As such, the sample API does not hash or otherwise encrypt passwords.*\n\nRequests which return a list of items support paging using the following query string parameters:\n\n* `ps` (page size) - The number of items to include on a page (default: 10)\n* `pn` (page number) - A zero-based value indicating which page of data to return (default: 0)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Authenticate",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"username\": \"postman\",\n\t\"password\": \"p0stman!\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/auth",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"auth"
+							]
+						},
+						"description": "Given standard credentials (`username` and `password`), verifies that the specified user is valid and active, then generates an expiring JWT to be used with authenticated requests."
+					},
+					"response": [
+						{
+							"name": "Authenticate - Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"postman\",\n\t\"password\": \"p0stman!\"\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "284"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11c-+hGzoihT/baGtUjbtCk5bJ7te1Y\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Dec 2018 03:37:33 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3MzNlYzJlLWVhZDUtNDE2Mi05YzlhLWU5MjlhMDMxMTVkOSIsInVzZXJuYW1lIjoicG9zdG1hbiIsImZpcnN0bmFtZSI6IlBvc3RtYW4iLCJsYXN0bmFtZSI6IlBvc3RtYW4iLCJpYXQiOjE1NDYyMjc0NTMsImV4cCI6MTU0NjIzMTA1M30.-DwSGPo4kgkZzyu-N9nBvCbb1f_inxs-scx1ZzbLgBs\"\n}"
+						},
+						{
+							"name": "Authenticate - Failure",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"username\": \"postman\",\n\t\"password\": \"p0stman\"\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/auth",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"auth"
+									]
+								}
+							},
+							"status": "Not Found",
+							"code": 404,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "72"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"48-2/v57sfEYbBNI83f6pcUsK9PdZE\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Dec 2018 03:38:02 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Authentication failed: Unable to locate the requested user\"\n}"
+						}
+					]
+				}
+			],
+			"description": "Folder for requests related to user authentication.\n\n*Note that the sample API does not hash or otherwise encrypt passwords.*",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "feb324b6-2bac-4119-9a49-600b17b806e3",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "2468795c-67f3-48fd-a37b-235cda4572b4",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Boards",
+			"item": [
+				{
+					"name": "List Boards",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards"
+							]
+						},
+						"description": "Authentication optional.\n\n* *Anonymous users*: Get a list of all public boards that match the provided criteria.\n* *Authenticated users*: Get a list of all public boards and the user's private boards that match the provided criteria."
+					},
+					"response": []
+				},
+				{
+					"name": "Search Boards",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"pageSize\": 10,\n\t\"pageNumber\": 0,\n\t\"filters\": [\n\t\t{ \"field\": \"name\", \"value\": \"Chapter 0\" }\n\t],\n\t\"sort\": \"name\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/search",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"search"
+							]
+						},
+						"description": "Authentication optional.\n\n* *Anonymous users*: Get a list of all public boards that match the provided criteria.\n* *Authenticated users*: Get a list of all public boards and the user's private boards that match the provided criteria."
+					},
+					"response": []
+				},
+				{
+					"name": "Get Board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}"
+							]
+						},
+						"description": "Authentication optional.\n\n* *Anonymous users*: Get the specified public board.\n* *Authenticated users*: Get the specified public board or private board owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "List Tickets for Board",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}/tickets?ps=2&pn=1",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}",
+								"tickets"
+							],
+							"query": [
+								{
+									"key": "ps",
+									"value": "2"
+								},
+								{
+									"key": "pn",
+									"value": "1"
+								}
+							]
+						},
+						"description": "Authentication optional. Gets the tickets associated with the specified board.\n\n* *Anonymous users*: Public board only.\n* *Authenticated users:* Public board or board owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Board",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"Introducing Postman - Chapter 3\",\n\t\"description\": \"Tasks related to environment and variable management\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								""
+							]
+						},
+						"description": "Authentication required. Creates a board owned by the current user."
+					},
+					"response": [
+						{
+							"name": "Create Board - Private",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"My private board\",\n\t\"description\": \"This is a private board\"\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/boards/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"boards",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "189"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bd-ei7eepkLDfIgt5ZM8x/TVPE/8P4\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Dec 2018 05:41:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"bf1c4010-0cbe-11e9-947d-e3f5edcf36b2\",\n    \"ownerId\": \"2733ec2e-ead5-4162-9c9a-e929a03115d9\",\n    \"name\": \"My private board\",\n    \"description\": \"This is a private board\",\n    \"public\": false,\n    \"active\": true\n}"
+						},
+						{
+							"name": "Create Board - Public",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"name\": \"My public board\",\n\t\"description\": \"This is a public board\",\n\t\"public\": true\n}"
+								},
+								"url": {
+									"raw": "{{BASE_URL}}/boards/",
+									"host": [
+										"{{BASE_URL}}"
+									],
+									"path": [
+										"boards",
+										""
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "186"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"ba-8gjxGKlkFJh094Woq+AT9JcexDU\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Dec 2018 05:42:18 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"id\": \"d62c0740-0cbe-11e9-947d-e3f5edcf36b2\",\n    \"ownerId\": \"2733ec2e-ead5-4162-9c9a-e929a03115d9\",\n    \"name\": \"My public board\",\n    \"description\": \"This is a public board\",\n    \"public\": true,\n    \"active\": true\n}"
+						}
+					]
+				},
+				{
+					"name": "Update Board",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"My board\",\n\t\"description\": \"This is a private board\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}"
+							]
+						},
+						"description": "Authentication required. Update the board details if the board is owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Board",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}"
+							]
+						},
+						"description": "Authentication required. Mark a board active (undelete) if the board is owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Board",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/boards/{{BOARD_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"boards",
+								"{{BOARD_ID}}"
+							]
+						},
+						"description": "Authentication required. Mark a board inactive (soft-delete) if the board is owned by the current user."
+					},
+					"response": []
+				}
+			],
+			"description": "Boards provide a container for grouping tickets much like in a Kanban system. To demonstrate how Postman can support authentication boards in the sample API can be public (available to any user of the system, including anonymous users) or private (available only to the board owner).",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "2ae3f5b5-7e01-4a1a-b9d3-517799c5ce98",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "fb1cb836-40a3-452e-8b42-a2ea8f66ad47",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Users",
+			"item": [
+				{
+					"name": "List Users",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users"
+							]
+						},
+						"description": "Authentication required. Gets the list of all users."
+					},
+					"response": [
+						{
+							"name": "List Users",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": ""
+								},
+								"url": {
+									"raw": "http://localhost:3000/api/users",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "3000",
+									"path": [
+										"api",
+										"users"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "193"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"c1-zyV02XBCNje6hr+dAdxk1nd12w0\""
+								},
+								{
+									"key": "Date",
+									"value": "Mon, 31 Dec 2018 03:55:41 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"pageNumber\": 0,\n    \"pageSize\": 10,\n    \"totalItems\": 1,\n    \"totalPages\": 1,\n    \"data\": [\n        {\n            \"id\": \"2733ec2e-ead5-4162-9c9a-e929a03115d9\",\n            \"username\": \"postman\",\n            \"firstname\": \"Postman\",\n            \"lastname\": \"Postman\",\n            \"active\": true\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "Get User",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{USER_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID}}"
+							]
+						},
+						"description": "Authentication required. Gets user account information."
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"username\": \"postman\",\n    \"password\": \"p0stman!\",\n    \"firstname\": \"Dave\",\n    \"lastname\": \"Fancher\"\n  }"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								""
+							]
+						},
+						"description": "Authentication required. Creates a new user in the system."
+					},
+					"response": []
+				},
+				{
+					"name": "Update User",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "  {\n    \"username\": \"postman\",\n    \"password\": \"p0stman!1\",\n    \"firstname\": \"Postman\",\n    \"lastname\": \"Postman\"\n  }"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{USER_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID}}"
+							]
+						},
+						"description": "Authentication required. Updates an existing user account."
+					},
+					"response": []
+				},
+				{
+					"name": "Activate User",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{USER_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID}}"
+							]
+						},
+						"description": "Authentication required. Marks a user account as active (undelete)."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate User",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/users/{{USER_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"users",
+								"{{USER_ID}}"
+							]
+						},
+						"description": "Authentication required. Marks an existing user as inactive (soft delete)."
+					},
+					"response": []
+				}
+			],
+			"description": "Folder for requests related to managing user accounts. Operations include:\n\n* listing users\n* getting individual user details\n* creating a new user\n* updating an existing user\n* deactivating (deleting) users\n* reactivating (undeleting) users\n\nUsers are a very simple concept within the sample API in that they exist merely to provide varying contexts for requests. As such the sample API does not hash or otherwise encrypt passwords. There is also no differentiation between different types of users so any user can perform any action against any user.\n\nThe sample API does take user context into account for `boards` and `tickets` requests to illustrate how different authentication values can change responses.\n",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "04dea056-99d2-441b-90f3-1a0e0208b746",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "03c5a621-3102-4002-bd5d-2619bb871d56",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Tickets",
+			"item": [
+				{
+					"name": "Get Ticket",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tickets/{{TICKET_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{TICKET_ID}}"
+							]
+						},
+						"description": "Authentication optional. Get details for a ticket.\n\n* *Anonymous users*: Tickets on public boards only.\n* *Authenticated users*: Tickets on public boards or boards owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "Create Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"boardId\": \"{{BOARD_ID}}\",\n\t\"name\": \"My first ticket\",\n\t\"description\": \"This is the first ticket in the system\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tickets",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tickets"
+							]
+						},
+						"description": "Authentication required. Create a ticket on the specified board as long as the user owns that board."
+					},
+					"response": []
+				},
+				{
+					"name": "Update Ticket",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"01 - Introduction\",\n\t\"description\": \"Welcome to Introducing Postman on LinkedIn Learning!\"\n}"
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tickets/{{TICKET_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{TICKET_ID}}"
+							]
+						},
+						"description": "Authentication required. Update ticket details as long as the current user owns the ticket."
+					},
+					"response": []
+				},
+				{
+					"name": "Deactivate Ticket",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tickets/{{TICKET_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{TICKET_ID}}"
+							]
+						},
+						"description": "Authentication required. Mark a ticket inactive (soft-delete) if the ticket is owned by the current user."
+					},
+					"response": []
+				},
+				{
+					"name": "Activate Ticket",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}/api/tickets/{{TICKET_ID}}",
+							"host": [
+								"{{BASE_URL}}"
+							],
+							"path": [
+								"api",
+								"tickets",
+								"{{TICKET_ID}}"
+							]
+						},
+						"description": "Authentication required. Mark a ticket active (undelete) if the ticket is owned by the current user."
+					},
+					"response": []
+				}
+			],
+			"description": "Tickets in the sample API are basically *To Do* items. To support demonstrating user context with authenticated requests, the sample API allows authenticated users to create tickets on a board or change tickets that they have created.",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c56c05b3-653d-4738-97fd-9063ad358e3c",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "d35e8cde-e508-4044-832d-a87f466e63f9",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		},
+		{
+			"name": "Status Check",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{BASE_URL}}",
+					"host": [
+						"{{BASE_URL}}"
+					]
+				},
+				"description": "Simple GET request to ensure the API is running. Successful response should indicate that the API is listening."
+			},
+			"response": [
+				{
+					"name": "Status Check - Success",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": ""
+						},
+						"url": {
+							"raw": "{{BASE_URL}}",
+							"host": [
+								"{{BASE_URL}}"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "html",
+					"header": [
+						{
+							"key": "X-Powered-By",
+							"value": "Express"
+						},
+						{
+							"key": "Content-Type",
+							"value": "text/html; charset=utf-8"
+						},
+						{
+							"key": "Content-Length",
+							"value": "19"
+						},
+						{
+							"key": "ETag",
+							"value": "W/\"13-0I5DikRAzuU2eqbCV9kiqWugxJE\""
+						},
+						{
+							"key": "Date",
+							"value": "Mon, 31 Dec 2018 03:22:12 GMT"
+						},
+						{
+							"key": "Connection",
+							"value": "keep-alive"
+						}
+					],
+					"cookie": [],
+					"body": "API is listening..."
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{BEARER_TOKEN}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "04047320-bdfd-4f0d-944e-9b517d909ee2",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "3f5c35d4-345f-4cdd-b499-d1ea8c0679da",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	]
+}

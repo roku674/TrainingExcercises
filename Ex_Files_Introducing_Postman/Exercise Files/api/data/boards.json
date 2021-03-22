@@ -1,0 +1,42 @@
+[
+  {
+    "id": "4af02b20-0e35-11e9-86bb-a1378ad71a65",
+    "ownerId": "2733ec2e-ead5-4162-9c9a-e929a03115d9",
+    "name": "Introducing Postman - Chapter 0",
+    "description": "Tasks related to getting started with learning Postman",
+    "public": true,
+    "active": true
+  },
+  {
+    "id": "632f71a0-0e35-11e9-86bb-a1378ad71a65",
+    "ownerId": "2733ec2e-ead5-4162-9c9a-e929a03115d9",
+    "name": "Introducing Postman - Chapter 1",
+    "description": "Tasks related to basic request composition",
+    "public": true,
+    "active": true
+  },
+  {
+    "id": "73337b00-0e35-11e9-86bb-a1378ad71a65",
+    "ownerId": "2733ec2e-ead5-4162-9c9a-e929a03115d9",
+    "name": "Introducing Postman - Chapter 2",
+    "description": "Tasks related to request management and organization",
+    "public": true,
+    "active": true
+  },
+  {
+    "id": "9decace0-0e35-11e9-86bb-a1378ad71a65",
+    "ownerId": "2733ec2e-ead5-4162-9c9a-e929a03115d9",
+    "name": "Introducing Postman - Chapter 3",
+    "description": "Tasks related to environment and variable management",
+    "public": true,
+    "active": true
+  },
+  {
+    "id": "9e33eba0-2258-11e9-8dff-6513ef8e5493",
+    "ownerId": "53bc3320-2258-11e9-8dff-6513ef8e5493",
+    "name": "Travel to Seattle",
+    "description": "Generic to-do items for a hypothetical trip to Seattle",
+    "public": false,
+    "active": true
+  }
+]
