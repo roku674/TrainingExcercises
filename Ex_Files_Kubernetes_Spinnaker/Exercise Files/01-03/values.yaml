@@ -1,0 +1,93 @@
+dockerRegistries:
+- name: dockerhub
+  address: index.docker.io
+  repositories:
+    - rstarmer/hostname
+    - rstarmer/curl
+
+kubeConfig:
+  enabled: true
+  secretName: kubeconfig
+  secretKey: config
+  contexts:
+  - akscluster
+  deploymentContext: akscluster
+
+ingress:
+  enabled: true
+  host: spinnaker.<INGRESS_DNS>
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+
+ingressGate:
+  enabled: true
+  host: gate.<INGRESS_DNS>
+  annotations:
+    kubernetes.io/ingress.class: addon-http-application-routing
+
+halyard:
+  spinnakerVersion: 1.12.0
+  image:
+    repository: gcr.io/spinnaker-marketplace/halyard
+    tag: 1.15.0
+  additionalScripts:
+    enabled: false
+    configMapName: my-halyard-config
+    configMapKey: config.sh
+    create: false
+    data: {}
+  additionalSecrets:
+    create: false
+    data: {}
+  additionalConfigMaps:
+    create: false
+    data: {}
+
+spinnakerFeatureFlags:
+  - artifacts
+  - jobs
+  - pipeline-templates
+
+nodeSelector: {}
+
+redis:
+  password: password
+  nodeSelector: {}
+  cluster:
+    enabled: false
+
+minio:
+  enabled: true
+  imageTag: RELEASE.2018-06-09T02-18-09Z
+  serviceType: ClusterIP
+  accessKey: spinnakeradmin
+  secretKey: spinnakeradmin
+  bucket: "spinnaker"
+  nodeSelector: {}
+gcs:
+  enabled: false
+  project: my-project-name
+  bucket: "<GCS-BUCKET-NAME>"
+  jsonKey: '<INSERT CLOUD STORAGE JSON HERE>'
+
+s3:
+  enabled: false
+  bucket: "<S3-BUCKET-NAME>"
+  # rootFolder: "front50"
+  # region: "us-east-1"
+  # endpoint: ""
+  # accessKey: ""
+  # secretKey: ""
+
+azs:
+  enabled: false
+#   storageAccountName: ""
+#   accessKey: ""
+#   containerName: "spinnaker"
+
+rbac:
+  create: true
+
+serviceAccount:
+  halyardName:
+  spinnakerName:

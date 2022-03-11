@@ -1,0 +1,36 @@
+If using AKS and their http_application_routing addon (a simple ingress controller), get the ingress domain for the values.yml
+
+az aks enable-addons --resource-group aksResGrp --name akscluster --addons http_application_routing
+az aks show --resource-group aksResGrp --name akscluster --query addonProfiles.httpApplicationRouting.config.HTTPApplicationRoutingZoneName -o tsv > ../dns_root.txt
+cat ../dns_root.txt
+
+We need to edit the values.yaml file to include your kubernetes contexts and ingress domain name
+
+vi values.yaml
+
+We also need to create a secret for Spinnaker from our Kubeconfig file in order for Spinnaker to be able to talk to our cluster (for deploying applications)
+
+kubectl create namespace spinnaker
+kubectl create secret generic --from-file=../config kubeconfig -n spinnaker
+
+Finally, we can launch Helm to install spinnaker
+
+helm install -f values.yaml --name cd --timeout 1200 --namespace spinnaker stable/spinnaker
+
+If you have an Ingress configured (or on Azure enabled the http application routing addon), and so long as you added your DNS name to the two ingress resources in the values.yaml file, you should be able to point a browser at:
+
+http://spinnaker.<ingress_dns_root>
+
+Otherwise, we can expose the 'deck' frontend on our local machine:
+HOWEVER - We will not be able to use webhooks from Github to trigger pipelines
+
+export DECK_POD=$(kubectl get pods --namespace spinnaker -l "cluster=spin-deck" -o jsonpath="{.items[0].metadata.name}")
+kubectl port-forward --namespace spinnaker $DECK_POD 9000 &
+
+then point your browser at http://localhost:9000
+
+To further configure your Spinnaker environment, you'll need halyard access. Luckily the Helm deployment includes a container set up to run the 'hal' CLI and configure our environment:
+
+kubectl exec --namespace spinnaker -it cd-spinnaker-halyard-0 bash
+
+(more information is available from 'helm status cd')
